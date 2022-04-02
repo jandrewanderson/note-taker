@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid');
-const dbJson = require('./develop/db/db.json');
-
+// const dbJson = require('./develop/db/db.json');
+const json = fs.readFileSync('./develop/db/db.json');
+const dbJson = JSON.parse(json);
 const PORT = process.env.PORT || 3000;
 
 const app = express();
