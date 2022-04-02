@@ -1,4 +1,4 @@
-# note-taker
+# Note Taker
 
 ## Description
 
@@ -38,7 +38,7 @@ If you have other Questions you can refer to the video or refer to my GitHub pro
 
 ## Link to the GitHub
 
-[Here is the link to my Github Repository](https://github.com/jandrewanderson/team-profile-generator)
+[Here is the link to my Github Repository](https://github.com/jandrewanderson/note-taker)
 
 ### Contributions
 
