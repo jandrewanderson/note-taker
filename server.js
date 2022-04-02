@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid');
 // const dbJson = require('./develop/db/db.json');
-const json = fs.readFileSync(path.join(__dirname, '/develop/db/db.json'));
+const json = fs.readFileSync(path.join(__dirname, '/Develop/db/db.json'));
 const dbJson = JSON.parse(json);
 const PORT = process.env.PORT || 3000;
 
@@ -11,16 +11,16 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('develop/public'));
+app.use(express.static('Develop/public'));
 
 // GET Route for homepage
 app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/develop/public/index.html'))
+  res.sendFile(path.join(__dirname, '/Develop/public/index.html'))
 );
 
 // GET route for notes
 app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/develop/public/notes.html'))
+  res.sendFile(path.join(__dirname, '/Develop/public/notes.html'))
 );
 
 // GET route for the database
@@ -50,7 +50,7 @@ app.post('/api/notes', (req, res) => {
 
 // Function to add to the db.json file
 const writeDbJson = () => {
-  fs.writeFileSync('develop/db/db.json', JSON.stringify(dbJson), err => {
+  fs.writeFileSync('Develop/db/db.json', JSON.stringify(dbJson), err => {
     err ? console.error(err) : console.log('You have added an entry to your database!')
   })
 }
@@ -59,7 +59,7 @@ const writeDbJson = () => {
 
 // Make homepage default
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/develop/public/index.html'))
+  res.sendFile(path.join(__dirname, '/Develop/public/index.html'))
 );
 
 // add PORT listener
