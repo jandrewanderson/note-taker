@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid');
 // const dbJson = require('./develop/db/db.json');
-const json = fs.readFileSync('./develop/db/db.json');
+const json = fs.readFileSync(path.join(__dirname, '/develop/db/db.json'));
 const dbJson = JSON.parse(json);
 const PORT = process.env.PORT || 3000;
 
