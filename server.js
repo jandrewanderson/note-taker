@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid');
+const dbJson = require('./Develop/db/db.json');
 
 const PORT = process.env.PORT || 3001;
 
@@ -16,36 +17,52 @@ app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/develop/public/index.html'))
 );
 
+// GET route for notes
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/develop/public/notes.html'))
 );
 
-app.get('/api/notes', (req, res) =>
-res.sendFile(path.join(__dirname, '/develop/db/db.json'))
-);
+// GET route for the database
+app.get('/api/notes', (req, res) => {
+  res.json(dbJson);
+});
 
+// POST route for the database
 app.post('/api/notes', (req, res) => {
 
-  const { title, text } = req.body;
+  const note = req.body;
+  console.log(note);
 
     const addNote = {
-      title,
-      text,
+      title: note.title,
+      text: note.text,
       id: uuid.v4()
     };
 
-  let db = fs.readFileSync('develop/db/db.json');
-  let parse = JSON.parse(db);
+  dbJson.push(addNote);
 
-  parse.push(addNote);
+  writeDbJson();
 
-  fs.writeFileSync('develop/db/db.json', JSON.stringify(parse));
+  return res.json(addNote);
 
 });
 
+// Function to add to the db.json file
+const writeDbJson = () => {
+  fs.writeFileSync('develop/db/db.json', JSON.stringify(dbJson), err => {
+    err ? console.error(err) : console.log('You have added an entry to your database!')
+  })
+}
 
+// TODO: add Delete function
 
-
+// Make homepage default
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/develop/public/index.html'))
+);
+// add PORT listener
 app.listen(PORT, () =>
   console.info(`App listening at http://localhost:${PORT}`)
 );
+
+
