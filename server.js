@@ -48,6 +48,26 @@ app.post('/api/notes', (req, res) => {
 
 });
 
+// const callData = () =>{
+//   const data = fs.readFileSync('Develop/db/db.json', (err, data) => {
+    
+//   })
+//   const dataa = JSON.parse(data)
+//   return dataa;
+// }
+// app.delete('/api/notes/:id', (req, res) => {
+//   const deletedId = req.params.id;
+//   const data = fs.readFileSync('Develop/db/db.json', (err, data) => {
+    
+//   })
+//   const notDeletedNote = data.filter(note => {
+//     note.id === deletedId;
+//   })
+//   fs.writeFileSync('Develop/db/db.json', JSON.stringify(notDeletedNote), err => {
+//     err ? console.error(err) : console.log('You have added an entry to your database!')})
+//   res.json(notDeletedNote);
+// })
+
 // Function to add to the db.json file
 const writeDbJson = () => {
   fs.writeFileSync('Develop/db/db.json', JSON.stringify(dbJson), err => {
@@ -55,7 +75,7 @@ const writeDbJson = () => {
   })
 }
 
-// TODO: add Delete function
+// TODO: add Delete function 
 
 // Make homepage default
 app.get('*', (req, res) =>
